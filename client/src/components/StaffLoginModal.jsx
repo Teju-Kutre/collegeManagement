@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-
+import { useNavigate } from "react-router-dom";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -16,6 +16,11 @@ import { TextField } from "@mui/material";
 const StaffLoginModal = ({ open, handleClose }) => {
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate("/staff");
+  };
 
   const style = {
     position: "absolute",
@@ -75,7 +80,9 @@ const StaffLoginModal = ({ open, handleClose }) => {
         </FormControl>
         <br />
 
-        <Button variant="contained">Login</Button>
+        <Button variant="contained" onClick={handleLogin}>
+          Login
+        </Button>
         <br />
       </Box>
     </Modal>

@@ -2,7 +2,6 @@
 .klelogo{
     height: 115px;
     width: 1184px;
-    
 }
 
 .collegeImage{
@@ -16,3 +15,13 @@
     align-self: center;
     margin: inherit;
 }
+
+.kle{
+    height: 100px;
+}
+
+.dashboard-icon{
+    height: 35px;
+    width: 35px;
+}
+
