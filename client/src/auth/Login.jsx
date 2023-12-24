@@ -38,7 +38,7 @@ const Login = () => {
     borderRadius:"10px",
     ":hover":{
       boxShadow: "5px 5px 5px 12px #E8E8E8",
-      border:"2px solid #1976d2"
+      border:"3px solid #1976d2"
     }
   };
 
@@ -48,7 +48,7 @@ const Login = () => {
 
   return (
     <Box>
-      <Grid container>
+      <Grid container sx={{overflow:"hidden"}}>
         <Grid item xs={12}  sx={{ textAlignLast: "center" }}>
           <img src={kleLogo} alt="logo" className="kle" />
         </Grid>

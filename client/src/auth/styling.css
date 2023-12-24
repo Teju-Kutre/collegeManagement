@@ -1,0 +1,20 @@
+.klelogo{
+    height: 115px;
+    width: 1184px;
+}
+
+.collegeImage{
+    height: 200px;
+    width: 100%;
+    
+}
+.cardImage{
+    height:180px;
+    width:180px;
+    align-self: center;
+    margin: inherit;
+}
+
+.kle{
+    height: 100px;
+}
