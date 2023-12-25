@@ -3,18 +3,22 @@ import { Grid, Typography } from "@mui/material";
 import "./styling.css";
 const StaffDashboard = ({ dashboardItems, handleActiveState, activeState }) => {
   const dashboardStyle = {
-    padding: "15px",
+    padding: "10px",
     ":hover": {
       color: "#1976d2",
       background: "#b3cfea",
-      borderLeft: "4px solid #1976d2",
+      border:"1px solid #1976d2",
+      borderLeft: "5px solid #1976d2",
+      borderRadius:"7px"   
     },
   };
   const dashboardStyleSelected = {
-    padding: "15px",
+    padding: "10px",
     color: "#1976d2",
     background: "#b3cfea",
-    borderLeft: "4px solid #1976d2",
+    border:"1px solid #1976d2",
+    borderLeft: "5px solid #1976d2",
+   borderRadius:"7px"
   };
   return (
     <>

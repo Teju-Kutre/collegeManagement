@@ -11,6 +11,7 @@ import Change_password from "../assets/Change_password.svg";
 import logout from "../assets/logout.svg";
 import { useState } from "react";
 import StaffApplyLeave from "./StaffApplyLeave";
+import applyLeave from "../assets/applyLeave.svg";
 
 const Staff = () => {
   const dashboarditems = [
@@ -40,17 +41,27 @@ const Staff = () => {
           <img src={klelogo} alt="kleLogo" className="kle" />
           <hr />
         </Grid>
-        <Grid container item xs={12}>
-          <Grid item xs={3} sx={{ border: "1px solid black" }}>
+        <Grid container item xs={12} sx={{ height: "100%" }}>
+          <Grid item xs={3}>
             <StaffDashboard
               dashboardItems={dashboarditems}
               activeState={activeState}
               handleActiveState={handleActiveState}
             />
           </Grid>
-          <Grid container item xs={9} sx={inputStyling}>
-            <StaffApplyLeave />
+          <Grid
+            container
+            item
+            xs={activeState === "Apply Leave" ? 5 : 9}
+            sx={{ justifyContent: "center" }}
+          >
+            {activeState === "Apply Leave" && <StaffApplyLeave />}
           </Grid>
+          {activeState === "Apply Leave" && (
+            <Grid item xs={4}>
+              <img src={applyLeave} alt="applyLeave" />
+            </Grid>
+          )}
         </Grid>
       </Grid>
     </Box>
