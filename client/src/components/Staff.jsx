@@ -11,8 +11,8 @@ import Change_password from "../assets/Change_password.svg";
 import logout from "../assets/logout.svg";
 import { useState } from "react";
 import StaffApplyLeave from "./StaffApplyLeave";
-import applyLeave from "../assets/applyLeave.svg";
-
+import StaffClassAdjustmentConfirmation from "./StaffClassAdjustmentConfirmation";
+import StaffPasswordChange from "../components/StaffPasswordChange";
 const Staff = () => {
   const dashboarditems = [
     { name: "Apply Leave", icon: leave, selected: true },
@@ -31,9 +31,6 @@ const Staff = () => {
     setActiveState(value);
   };
 
-  const inputStyling = {
-    border: "1px solid black",
-  };
   return (
     <Box>
       <Grid container>
@@ -49,19 +46,13 @@ const Staff = () => {
               handleActiveState={handleActiveState}
             />
           </Grid>
-          <Grid
-            container
-            item
-            xs={activeState === "Apply Leave" ? 5 : 9}
-            sx={{ justifyContent: "center" }}
-          >
+          <Grid container item xs={9}>
             {activeState === "Apply Leave" && <StaffApplyLeave />}
+            {activeState === "Class Adjustment Confirmation" && (
+              <StaffClassAdjustmentConfirmation />
+            )}
+            {activeState === "Change Password" && <StaffPasswordChange />}
           </Grid>
-          {activeState === "Apply Leave" && (
-            <Grid item xs={4}>
-              <img src={applyLeave} alt="applyLeave" />
-            </Grid>
-          )}
         </Grid>
       </Grid>
     </Box>
