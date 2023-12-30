@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import kleLogo from "../assets/kleLogo.jpeg";
 import collegeImage from "../assets/collegeImage.jpg";
 import "./styling.css";
@@ -35,22 +35,22 @@ const Login = () => {
     display: "flex",
     flexDirection: "column",
     margin: "30px",
-    borderRadius:"10px",
-    ":hover":{
+    borderRadius: "10px",
+    ":hover": {
       boxShadow: "5px 5px 5px 12px #E8E8E8",
-      border:"3px solid #1976d2"
-    }
+      border: "3px solid #E8E8E8",
+    },
   };
 
   const typographyStyle = {
-    fontSize:"0.60rem"
-  }
+    fontSize: "0.60rem",
+  };
 
   return (
     <Box>
-      <Grid container sx={{overflow:"hidden"}}>
-        <Grid item xs={12}  sx={{ textAlignLast: "center" }}>
-          <img src={kleLogo} alt="logo" className="kle" />
+      <Grid container sx={{ overflow: "hidden" }}>
+        <Grid item xs={12} sx={{ textAlignLast: "center" }}>
+          <img src={kleLogo} alt="logo" className="kleLogo" />
         </Grid>
         <Grid item xs={12}>
           <img src={collegeImage} alt="collegeImage" className="collegeImage" />
@@ -60,7 +60,11 @@ const Login = () => {
         <Grid item xs={3}>
           <Card sx={cardStyle}>
             <img src={principal} alt="principal" className="cardImage" />
-            <Button variant="contained" onClick={handleOpenPrincipalModal} sx={typographyStyle}>
+            <Button
+              variant="contained"
+              onClick={handleOpenPrincipalModal}
+              sx={typographyStyle}
+            >
               Principal Login
             </Button>
           </Card>
@@ -68,7 +72,11 @@ const Login = () => {
         <Grid item xs={3}>
           <Card sx={cardStyle}>
             <img src={admin} alt="admin" className="cardImage" />
-            <Button variant="contained" onClick={handleOpenAdminLoginModal} sx={typographyStyle}>
+            <Button
+              variant="contained"
+              onClick={handleOpenAdminLoginModal}
+              sx={typographyStyle}
+            >
               Administrator Login
             </Button>
           </Card>
@@ -76,7 +84,11 @@ const Login = () => {
         <Grid item xs={3}>
           <Card sx={cardStyle}>
             <img src={staff} alt="staff" className="cardImage" />
-            <Button variant="contained" onClick={handleOpenStaffLoginModal} sx={typographyStyle}>
+            <Button
+              variant="contained"
+              onClick={handleOpenStaffLoginModal}
+              sx={typographyStyle}
+            >
               Staff Login
             </Button>
           </Card>
@@ -84,7 +96,11 @@ const Login = () => {
         <Grid item xs={3}>
           <Card sx={cardStyle}>
             <img src={hod} alt="hod" className="cardImage" />
-            <Button variant="contained" onClick={handleOpenHodLoginModal} sx={typographyStyle}>
+            <Button
+              variant="contained"
+              onClick={handleOpenHodLoginModal}
+              sx={typographyStyle}
+            >
               HOD / Office / Librarian / TPO Login
             </Button>
           </Card>

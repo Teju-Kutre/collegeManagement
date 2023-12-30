@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Grid, Typography } from "@mui/material";
 import "./styling.css";
 const StaffDashboard = ({ dashboardItems, handleActiveState, activeState }) => {
@@ -6,19 +6,20 @@ const StaffDashboard = ({ dashboardItems, handleActiveState, activeState }) => {
     padding: "10px",
     ":hover": {
       color: "#1976d2",
-      background: "#b3cfea",
-      border:"1px solid #1976d2",
+      fontWeight: "800",
+      background: "#e8e8e8",
       borderLeft: "5px solid #1976d2",
-      borderRadius:"7px"   
+      marginLeft: "1px",
+      boxShadow:
+        "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);",
     },
   };
   const dashboardStyleSelected = {
     padding: "10px",
+    marginLeft: "1px",
     color: "#1976d2",
     background: "#b3cfea",
-    border:"1px solid #1976d2",
     borderLeft: "5px solid #1976d2",
-   borderRadius:"7px"
   };
   return (
     <>

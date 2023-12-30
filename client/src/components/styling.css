@@ -1,27 +1,24 @@
-
-.klelogo{
-    height: 115px;
-    width: 1184px;
+.logo {
+  height: 115px;
+  width: 1184px;
 }
 
-.collegeImage{
-    height: 200px;
-    width: 100%;
-    
+.notification {
+  height: 50px;
+  width: 50px;
+  margin: 10px;
 }
-.cardImage{
-    height:200px;
-    width:200px;
-    align-self: center;
-    margin: inherit;
+.notification:hover {
+  background-color: #1565c0;
 }
 
-.kle{
-    height: 100px;
+.kle {
+  height: 50px;
+  width: 50px;
+  margin: 10px;
 }
 
-.dashboard-icon{
-    height: 35px;
-    width: 35px;
+.dashboard-icon {
+  height: 35px;
+  width: 35px;
 }
-
