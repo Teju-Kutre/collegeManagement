@@ -1,5 +1,5 @@
 import { Box, Grid } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import kle from "../assets/kle.jpg";
 import "./styling.css";
 import StaffDashboard from "./StaffDashboard";
@@ -14,17 +14,19 @@ import StaffApplyLeave from "./StaffApplyLeave";
 import StaffClassAdjustmentConfirmation from "./StaffClassAdjustmentConfirmation";
 import StaffPasswordChange from "../components/StaffPasswordChange";
 import notification from "../assets/notification.svg";
-import List from "@mui/material/List";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import Collapse from "@mui/material/Collapse";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
 import { useNavigate } from "react-router-dom";
+import homeIcon from "../assets/home-icon.svg";
+import StaffHome from "./StaffHome";
 
 const Staff = () => {
-  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const [activeState, setActiveState] = useState("Home");
+
+  useEffect(() => {
+    if (activeState === "Logout") {
+      logoutUser();
+    }
+  });
 
   const dashboarditems = [
     { name: "Apply Leave", icon: leave, selected: true },
@@ -38,7 +40,6 @@ const Staff = () => {
     { name: "Change Password", icon: Change_password, selected: false },
     { name: "Logout", icon: logout, selected: false },
   ];
-  const [activeState, setActiveState] = useState("Apply Leave");
   const handleActiveState = (value) => {
     setActiveState(value);
   };
@@ -47,11 +48,18 @@ const Staff = () => {
     console.log("notification");
   };
 
-  const handleClick = () => {
-    setOpen(!open);
+  const handleHome = () => {
+    setActiveState("Home");
+    console.log("Home");
   };
   const logoutUser = () => {
     navigate("/");
+  };
+
+  const mainComponentStyle = {
+    backgroundColor: "white",
+    margin: "15px",
+    borderRadius: "10px",
   };
 
   return (
@@ -71,7 +79,7 @@ const Staff = () => {
           </Grid>
           <Grid
             item
-            xs={9}
+            xs={9.5}
             sx={{
               color: "white",
               fontSize: "xx-large",
@@ -81,7 +89,7 @@ const Staff = () => {
           >
             Staff Management
           </Grid>
-          <Grid item xs={1}>
+          <Grid item xs={0.5}>
             <img
               onClick={handleNotification}
               src={notification}
@@ -89,18 +97,13 @@ const Staff = () => {
               className="notification"
             />
           </Grid>
-          <Grid item xs={1} sx={{ padding: "10px", color: "white" }}>
-            <ListItemButton onClick={handleClick}>
-              <ListItemText primary="Profile" />
-              {open ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-            <Collapse in={open} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText onClick={logoutUser} primary="Logout" />
-                </ListItemButton>
-              </List>
-            </Collapse>
+          <Grid item xs={1}>
+            <img
+              onClick={handleHome}
+              src={homeIcon}
+              alt="home"
+              className="home"
+            />
           </Grid>
         </Grid>
 
@@ -122,7 +125,8 @@ const Staff = () => {
               handleActiveState={handleActiveState}
             />
           </Grid>
-          <Grid container item xs={9.5}>
+          <Grid container item xs={9.2} sx={mainComponentStyle}>
+            {activeState === "Home" && <StaffHome />}
             {activeState === "Apply Leave" && <StaffApplyLeave />}
             {activeState === "Class Adjustment Confirmation" && (
               <StaffClassAdjustmentConfirmation />

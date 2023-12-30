@@ -47,6 +47,7 @@ const StaffApplyLeave = () => {
   return (
     <Grid container sx={{ justifyContent: "center" }}>
       <Grid
+        item
         xs={7}
         sx={{
           display: "flex",
