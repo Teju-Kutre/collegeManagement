@@ -16,10 +16,13 @@ const StaffDashboard = ({ dashboardItems, handleActiveState, activeState }) => {
   };
   const dashboardStyleSelected = {
     padding: "10px",
-    marginLeft: "1px",
     color: "#1976d2",
-    background: "#b3cfea",
+    fontWeight: "800",
+    background: "#e8e8e8",
     borderLeft: "5px solid #1976d2",
+    marginLeft: "1px",
+    boxShadow:
+      "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);",
   };
   return (
     <>

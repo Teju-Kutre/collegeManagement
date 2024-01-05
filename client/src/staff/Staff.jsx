@@ -11,16 +11,37 @@ import Change_password from "../assets/Change_password.svg";
 import logout from "../assets/logout.svg";
 import { useState } from "react";
 import StaffApplyLeave from "./StaffApplyLeave";
-import StaffClassAdjustmentConfirmation from "./StaffClassAdjustmentConfirmation";
-import StaffPasswordChange from "../components/StaffPasswordChange";
+import StaffClassAdjustment from "./StaffClassAdjustment";
+import StaffPasswordChange from "./StaffPasswordChange";
 import notification from "../assets/notification.svg";
 import { useNavigate } from "react-router-dom";
 import homeIcon from "../assets/home-icon.svg";
 import StaffHome from "./StaffHome";
+import StaffClassAdjustmentStatus from "./StaffClassAdjustmentStatus";
+import StaffLeaveDetails from "./StaffLeaveDetails";
 
 const Staff = () => {
   const navigate = useNavigate();
   const [activeState, setActiveState] = useState("Home");
+  const [leaveForm, setLeaveForm] = useState({
+    leaveType: "",
+    numberOfDays: "",
+    fromDate: "",
+    toDate: "",
+    reason: "",
+    workAdjusted: "",
+  });
+
+  const handleReset = () => {
+    setLeaveForm({
+      leaveType: "",
+      numberOfDays: "",
+      fromDate: "",
+      toDate: "",
+      reason: "",
+      workAdjusted: "",
+    });
+  };
 
   useEffect(() => {
     if (activeState === "Logout") {
@@ -31,7 +52,7 @@ const Staff = () => {
   const dashboarditems = [
     { name: "Apply Leave", icon: leave, selected: true },
     {
-      name: "Class Adjustment Confirmation",
+      name: "Class Adjustment",
       icon: classAdjustment,
       selected: false,
     },
@@ -52,9 +73,33 @@ const Staff = () => {
     setActiveState("Home");
     console.log("Home");
   };
+
+  const handleClassAdjust = () => {
+    setActiveState("Class Adjustment");
+  };
   const logoutUser = () => {
     navigate("/");
   };
+
+  let mainComponentContent = <StaffHome />;
+
+  if (activeState === "Apply Leave")
+    mainComponentContent = (
+      <StaffApplyLeave
+        handleNext={handleClassAdjust}
+        handleReset={handleReset}
+        leaveForm={leaveForm}
+        setLeaveForm={setLeaveForm}
+      />
+    );
+  else if (activeState === "Class Adjustment")
+    mainComponentContent = <StaffClassAdjustment leaveForm={leaveForm} />;
+  else if (activeState === "Leave Adjustment Status")
+    mainComponentContent = <StaffClassAdjustmentStatus />;
+  else if (activeState === "Leave Details of Current Year")
+    mainComponentContent = <StaffLeaveDetails />;
+  else if (activeState === "Change Password")
+    mainComponentContent = <StaffPasswordChange />;
 
   const mainComponentStyle = {
     backgroundColor: "white",
@@ -126,12 +171,7 @@ const Staff = () => {
             />
           </Grid>
           <Grid container item xs={9.2} sx={mainComponentStyle}>
-            {activeState === "Home" && <StaffHome />}
-            {activeState === "Apply Leave" && <StaffApplyLeave />}
-            {activeState === "Class Adjustment Confirmation" && (
-              <StaffClassAdjustmentConfirmation />
-            )}
-            {activeState === "Change Password" && <StaffPasswordChange />}
+            {mainComponentContent}
           </Grid>
         </Grid>
       </Grid>
