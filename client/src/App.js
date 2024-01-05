@@ -2,6 +2,7 @@ import './App.css';
 import Login from "./auth/Login";
 import Staff from "./staff/Staff";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Admin from './admin/Admin';
 
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path='/staff' element={<Staff />} />
+      <Route path='/admin' element={<Admin />} />
     </Routes>
     </BrowserRouter>
   );

@@ -10,11 +10,16 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import TextField from "@mui/material/TextField";
+import { useNavigate } from "react-router-dom";
 
 const AdminLoginModal = ({ open, handleClose }) => {
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate("/admin");
+  };
 
   const style = {
     position: "absolute",
@@ -37,6 +42,7 @@ const AdminLoginModal = ({ open, handleClose }) => {
     color: "#1976d2",
     alignSelf: "center",
   };
+
   return (
     <Modal
       open={open}
@@ -70,7 +76,9 @@ const AdminLoginModal = ({ open, handleClose }) => {
           />
         </FormControl>
         <br />
-        <Button variant="contained">Login</Button>
+        <Button variant="contained" onClick={handleLogin}>
+          Login
+        </Button>
         <br />
       </Box>
     </Modal>
