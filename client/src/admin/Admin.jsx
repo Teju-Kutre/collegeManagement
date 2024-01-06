@@ -14,6 +14,9 @@ import notification from "../assets/notification.svg";
 import { useNavigate } from "react-router-dom";
 import homeIcon from "../assets/home-icon.svg";
 import AdminDashboard from "./AdminDashboard";
+import AdminChangePasswordCoordinator from "./AdminChangePasswordCoordinator";
+import leaveCount from "../assets/leaveCount.svg";
+import AdminStaffLeaveCount from "./AdminStaffLeaveCount";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -54,6 +57,7 @@ const Admin = () => {
 
   const dashboarditems = [
     { name: "Add Staff", icon: addStaff, selected: true },
+    { name: "Leave Count Current Year", icon: leaveCount, selected: false },
     { name: "Block Date", icon: blockDate, selected: false },
     {
       name: "Reset Password (HOD / Staff)",
@@ -96,10 +100,10 @@ const Admin = () => {
         handleSubmit={handleSubmit}
       />
     );
-  //   else if (activeState === "Class Adjustment")
-  //     mainComponentContent = <StaffClassAdjustment leaveForm={leaveForm} />;
-  //   else if (activeState === "Leave Adjustment Status")
-  //     mainComponentContent = <StaffClassAdjustmentStatus />;
+  else if (activeState === "Leave Count Current Year")
+    mainComponentContent = <AdminStaffLeaveCount />;
+  else if (activeState === "Change Password (Coordinator)")
+    mainComponentContent = <AdminChangePasswordCoordinator />;
   //   else if (activeState === "Leave Details of Current Year")
   //     mainComponentContent = <StaffLeaveDetails />;
   //   else if (activeState === "Change Password")
