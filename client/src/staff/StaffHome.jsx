@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Typography } from "@mui/material";
-import profileImage from "../assets/profileImage.png";
+import profileImage from "../assets/profileImage.svg";
 import CustomTable from "./CustomTable";
 
 const StaffHome = () => {

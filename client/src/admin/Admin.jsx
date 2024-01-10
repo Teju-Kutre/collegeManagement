@@ -65,7 +65,7 @@ const Admin = () => {
       selected: false,
     },
     {
-      name: "Change Password (Coordinator)",
+      name: "Change Password",
       icon: passwordResetCoordinate,
       selected: false,
     },
@@ -102,7 +102,7 @@ const Admin = () => {
     );
   else if (activeState === "Leave Count Current Year")
     mainComponentContent = <AdminStaffLeaveCount />;
-  else if (activeState === "Change Password (Coordinator)")
+  else if (activeState === "Change Password")
     mainComponentContent = <AdminChangePasswordCoordinator />;
   //   else if (activeState === "Leave Details of Current Year")
   //     mainComponentContent = <StaffLeaveDetails />;

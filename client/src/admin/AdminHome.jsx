@@ -15,6 +15,8 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import TextField from "@mui/material/TextField";
+import Link from "@mui/material/Link";
+import StaffProfile from "./StaffProfile";
 
 //All values in the table are Hardcoded, do change accordingly
 
@@ -38,23 +40,18 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const activeButton = {
-  backgroundColor: "green",
-  ":hover": {
-    backgroundColor: "#4CBB17",
-  },
-};
-
-const deleteButton = {
-  backgroundColor: "#CC0000",
-  ":hover": {
-    backgroundColor: "#7C0A02",
-  },
-};
-
 const AdminHome = () => {
   const [searchBy, setSearchBy] = useState("none");
   const [search, setSearch] = useState("");
+  const [profile, setProfile] = useState(tech[0]);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = () => setOpen(false);
+
+  const openModal = (row) => {
+    setProfile(row);
+    setOpen(true);
+  };
   return (
     <Grid container>
       <Grid item xs={12} sx={{ display: "flex", margin: "10px" }}>
@@ -103,10 +100,6 @@ const AdminHome = () => {
                 <StyledTableCell align="left">Designation</StyledTableCell>
                 <StyledTableCell align="left">Department</StyledTableCell>
                 <StyledTableCell align="left">Email Address</StyledTableCell>
-                <StyledTableCell align="left">
-                  Active / InActive
-                </StyledTableCell>
-                <StyledTableCell align="left">Delete Staff</StyledTableCell>
               </TableRow>
             </TableHead>
 
@@ -116,27 +109,20 @@ const AdminHome = () => {
                   <StyledTableCell align="center">
                     {row["Sl NO "]}
                   </StyledTableCell>
-                  <StyledTableCell align="left">{row.Name}</StyledTableCell>
+                  <StyledTableCell align="left">
+                    <Link onClick={() => openModal(row)}>{row.Name}</Link>
+                  </StyledTableCell>
                   <StyledTableCell align="left">{row.Design}</StyledTableCell>
                   <StyledTableCell align="center">{row.Dept}</StyledTableCell>
                   <StyledTableCell align="left" sx={{ color: "#0047AB	s" }}>
                     {row["EMAIL ID "]}
-                  </StyledTableCell>
-                  <StyledTableCell align="left">
-                    <Button variant="contained" sx={activeButton}>
-                      Active
-                    </Button>
-                  </StyledTableCell>
-                  <StyledTableCell align="left">
-                    <Button variant="contained" sx={deleteButton}>
-                      Delete
-                    </Button>
                   </StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
+        <StaffProfile profile={profile} handleClose={handleClose} open={open} />
       </Grid>
     </Grid>
   );

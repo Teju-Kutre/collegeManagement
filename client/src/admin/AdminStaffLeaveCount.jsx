@@ -45,6 +45,10 @@ const headStyle = {
   margin: "5px",
 };
 
+// cl - 12
+// dl - unlimited
+// pl - ?
+
 const AdminStaffLeaveCount = () => {
   return (
     <Grid container>
