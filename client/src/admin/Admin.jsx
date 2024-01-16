@@ -8,7 +8,6 @@ import passwordResetCoordinate from "../assets/passwordResetCoordinate.svg";
 import "./styling.css";
 import AdminAddStaff from "./AdminAddStaff";
 import AdminHome from "./AdminHome";
-import logout from "../assets/logout.svg";
 import { useState } from "react";
 import notification from "../assets/notification.svg";
 import { useNavigate } from "react-router-dom";
@@ -17,10 +16,19 @@ import AdminDashboard from "./AdminDashboard";
 import AdminChangePasswordCoordinator from "./AdminChangePasswordCoordinator";
 import leaveCount from "../assets/leaveCount.svg";
 import AdminStaffLeaveCount from "./AdminStaffLeaveCount";
+import AdminBlockDate from "./AdminBlockDate";
+import ResetPasswordHODStaffPrincipal from "./ResetPasswordHODStaffPrincipal";
+import ProfileImage from "../assets/profileImage.svg";
+import LogoutModal from "./LogoutModal";
+import logout from "../assets/logout.svg";
 
 const Admin = () => {
   const navigate = useNavigate();
   const [activeState, setActiveState] = useState("Home");
+  const [open, setOpen] = React.useState(false);
+  const closeModal = () => setOpen(false);
+  const openModal = () => setOpen(true);
+
   const [addForm, setAddForm] = useState({
     StaffID: "",
     password: "",
@@ -56,7 +64,8 @@ const Admin = () => {
   });
 
   const dashboarditems = [
-    { name: "Add Staff", icon: addStaff, selected: true },
+    { name: "Home", icon: homeIcon, selected: true },
+    { name: "Add Staff", icon: addStaff, selected: false },
     { name: "Leave Count Current Year", icon: leaveCount, selected: false },
     { name: "Block Date", icon: blockDate, selected: false },
     {
@@ -69,7 +78,6 @@ const Admin = () => {
       icon: passwordResetCoordinate,
       selected: false,
     },
-    { name: "Logout", icon: logout, selected: false },
   ];
 
   const handleActiveState = (value) => {
@@ -78,11 +86,6 @@ const Admin = () => {
 
   const handleNotification = () => {
     console.log("notification");
-  };
-
-  const handleHome = () => {
-    setActiveState("Home");
-    console.log("Home");
   };
 
   const logoutUser = () => {
@@ -104,10 +107,10 @@ const Admin = () => {
     mainComponentContent = <AdminStaffLeaveCount />;
   else if (activeState === "Change Password")
     mainComponentContent = <AdminChangePasswordCoordinator />;
-  //   else if (activeState === "Leave Details of Current Year")
-  //     mainComponentContent = <StaffLeaveDetails />;
-  //   else if (activeState === "Change Password")
-  //     mainComponentContent = <StaffPasswordChange />;
+  else if (activeState === "Block Date")
+    mainComponentContent = <AdminBlockDate />;
+  else if (activeState === "Reset Password (HOD / Staff)")
+    mainComponentContent = <ResetPasswordHODStaffPrincipal />;
 
   const mainComponentStyle = {
     backgroundColor: "white",
@@ -153,10 +156,15 @@ const Admin = () => {
           </Grid>
           <Grid item xs={1}>
             <img
-              onClick={handleHome}
-              src={homeIcon}
-              alt="home"
-              className="home"
+              onClick={openModal}
+              src={logout}
+              alt="logout"
+              className="profile"
+            />
+            <LogoutModal
+              handleClose={closeModal}
+              open={open}
+              handleLogout={logoutUser}
             />
           </Grid>
         </Grid>

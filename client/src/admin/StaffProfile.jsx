@@ -2,7 +2,6 @@ import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 import Modal from "@mui/material/Modal";
 import ProfileImage from "../assets/profileImage.svg";
-import name from "../assets/name.svg";
 import contact from "../assets/contact.svg";
 import department from "../assets/department.svg";
 import designation from "../assets/designation.svg";
@@ -18,7 +17,6 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 600,
   bgcolor: "background.paper",
-  border: "2px solid #000",
   boxShadow: 24,
 };
 
@@ -38,14 +36,13 @@ const infoStyle = {
 };
 
 const textStyle = {
-  paddingLeft: "40px",
+  paddingLeft: "20px",
   paddingTop: "10px",
 };
 
 const activeStyle = {
   backgroundColor: "#4CBB17",
   height: "40px",
-  margin: "10%",
   ":hover": {
     backgroundColor: "#7CFC00",
   },
@@ -74,17 +71,16 @@ const StaffProfile = ({ profile, open, handleClose }) => {
             <img
               src={ProfileImage}
               alt="profileImage"
-              style={{ Height: "80px", width: "80px", marginRight: "50px" }}
+              style={{ Height: "60px", width: "60px", marginRight: "40px" }}
             />
-            <Typography variant="h5" sx={{ color: "white" }}>
+            <Typography
+              variant="h5"
+              sx={{ color: "white", paddingTop: "15px" }}
+            >
               {profile.Name}
             </Typography>
           </Grid>
           <Grid container item xs={12}>
-            <Grid item xs={5.5} sx={infoStyle}>
-              <img src={name} alt="name" style={imageStyle} />
-              <Typography sx={textStyle}>{profile.Name}</Typography>
-            </Grid>
             <Grid item xs={5.5} sx={infoStyle}>
               <img src={contact} alt="contact" style={imageStyle} />
               <Typography sx={textStyle}>{profile["CONTACT NO "]}</Typography>
@@ -102,14 +98,14 @@ const StaffProfile = ({ profile, open, handleClose }) => {
               <Typography sx={textStyle}>{profile.Design}</Typography>
             </Grid>
             <Grid item xs={5.5} sx={infoStyle}>
-              <img src={qualification} alt="qualification" style={imageStyle} />
-              <Typography sx={textStyle}>{profile.Qualification}</Typography>
-            </Grid>
-            <Grid item xs={5.5} sx={infoStyle}>
               <img src={address} alt="address" style={imageStyle} />
               <Typography sx={textStyle}>
                 {profile["Permanent Address"]}
               </Typography>
+            </Grid>
+            <Grid item xs={5.5} sx={infoStyle}>
+              <img src={qualification} alt="qualification" style={imageStyle} />
+              <Typography sx={textStyle}>{profile.Qualification}</Typography>
             </Grid>
             <Grid item xs={5.5} sx={infoStyle}>
               <Button variant="contained" sx={activeStyle}>

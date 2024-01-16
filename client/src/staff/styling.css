@@ -12,12 +12,12 @@
   background-color: #1565c0;
 }
 
-.home {
+.logout {
   height: 40px;
   width: 40px;
   margin: 14px;
 }
-.home:hover {
+.logout:hover {
   background-color: #1565c0;
 }
 

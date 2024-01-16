@@ -19,10 +19,15 @@ import homeIcon from "../assets/home-icon.svg";
 import StaffHome from "./StaffHome";
 import StaffClassAdjustmentStatus from "./StaffClassAdjustmentStatus";
 import StaffLeaveDetails from "./StaffLeaveDetails";
+import LogoutModal from "./LogoutModal";
 
 const Staff = () => {
   const navigate = useNavigate();
   const [activeState, setActiveState] = useState("Home");
+  const [open, setOpen] = React.useState(false);
+  const closeModal = () => setOpen(false);
+  const openModal = () => setOpen(true);
+
   const [leaveForm, setLeaveForm] = useState({
     leaveType: "",
     numberOfDays: "",
@@ -50,7 +55,8 @@ const Staff = () => {
   });
 
   const dashboarditems = [
-    { name: "Apply Leave", icon: leave, selected: true },
+    { name: "Home", icon: homeIcon, selected: true },
+    { name: "Apply Leave", icon: leave, selected: false },
     {
       name: "Class Adjustment",
       icon: classAdjustment,
@@ -59,7 +65,6 @@ const Staff = () => {
     { name: "Leave Adjustment Status", icon: leaveAdjustment, selected: false },
     { name: "Leave Details of Current Year", icon: calendar, selected: false },
     { name: "Change Password", icon: Change_password, selected: false },
-    { name: "Logout", icon: logout, selected: false },
   ];
   const handleActiveState = (value) => {
     setActiveState(value);
@@ -67,11 +72,6 @@ const Staff = () => {
 
   const handleNotification = () => {
     console.log("notification");
-  };
-
-  const handleHome = () => {
-    setActiveState("Home");
-    console.log("Home");
   };
 
   const handleClassAdjust = () => {
@@ -144,12 +144,17 @@ const Staff = () => {
           </Grid>
           <Grid item xs={1}>
             <img
-              onClick={handleHome}
-              src={homeIcon}
-              alt="home"
-              className="home"
+              onClick={openModal}
+              src={logout}
+              alt="logout"
+              className="logout"
             />
           </Grid>
+          <LogoutModal
+            handleClose={closeModal}
+            open={open}
+            handleLogout={logoutUser}
+          />
         </Grid>
 
         <Grid container item xs={12}>
