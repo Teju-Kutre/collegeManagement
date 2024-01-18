@@ -38,6 +38,21 @@ app.post('/addStaff', async (req,res)=>{
     }
 })
 
+// api to get particular Staff
+app.get('/staff/:id', async(req, res) => {
+    try {
+        const {id} = req.params;
+        const staff = await staffInformation.findById(id);
+        if(staff === null){
+            res.status(500).json("staff not present")
+            return
+        }
+        res.status(200).json(staff)
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+})
+//--------------------------------------------------------------------------------------------------------------------
 
 //connecting to Database and 
 mongoose.connect(db_connection)
