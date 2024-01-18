@@ -44,11 +44,38 @@ app.get('/staff/:id', async(req, res) => {
         const {id} = req.params;
         const staff = await staffInformation.findById(id);
         if(staff === null){
-            res.status(500).json("staff not present")
-            return
+            return res.status(404).json( {message: `cannot find Staff`} )
         }
         res.status(200).json(staff)
     } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+})
+
+//api to update staff
+app.put('/staff/:id', async(req,res) => {
+    try{
+        const {id} = req.params;
+        const staff = await staffInformation.findByIdAndUpdate(id, req.body)
+        if(!staff){
+            return res.status(404).json({message: `Cannot find Staff`})
+        }
+        res.status(200).json(staff)
+    }catch(error){ 
+        res.status(500).json({message: error.message})
+    }
+})
+
+//api to delete staff
+app.delete('/staff/:id', async(req,res) => {
+    try{
+        const {id} = req.params;
+        const staff = await staffInformation.findByIdAndDelete(id)
+        if(!staff){
+            return res.status(404).json({message: `Staff ID not present to delete`})
+        }
+        res.status(200).json(staff)
+    }catch(error){
         res.status(500).json({message: error.message})
     }
 })
