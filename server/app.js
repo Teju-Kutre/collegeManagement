@@ -11,75 +11,8 @@ require('dotenv').config();
 //accessing my dbconenction variable
 const db_connection = process.env.DB_CONNECTION;
 
-//---------------------------------------------------declare routes---------------------------------------------------
-// api to get all staff data
-app.get('/staff',async (req,res)=>{
-    try{
-        const staff = await staffInformation.find({});
-        res.status(200).json(staff)
-    }catch(error){
-        res.status(500).json({message: error.message})
-    }
-    res.send("hello node api");
-})
-
-// api to add staff
-app.post('/addStaff', async (req,res)=>{
-    try{
-        if(staffInformation.findOne(req.body.SNo)){
-            res.status(500).json("staff already present in Database")
-            return
-        }
-        const staff = await staffInformation.create(req.body)
-        res.status(200).json(staff);
-    }catch(error){
-        console.log(error.message)
-        res.status(500).json({message: error.message})
-    }
-})
-
-// api to get particular Staff
-app.get('/staff/:id', async(req, res) => {
-    try {
-        const {id} = req.params;
-        const staff = await staffInformation.findById(id);
-        if(staff === null){
-            return res.status(404).json( {message: `cannot find Staff`} )
-        }
-        res.status(200).json(staff)
-    } catch (error) {
-        res.status(500).json({message: error.message})
-    }
-})
-
-//api to update staff
-app.put('/staff/:id', async(req,res) => {
-    try{
-        const {id} = req.params;
-        const staff = await staffInformation.findByIdAndUpdate(id, req.body)
-        if(!staff){
-            return res.status(404).json({message: `Cannot find Staff`})
-        }
-        res.status(200).json(staff)
-    }catch(error){ 
-        res.status(500).json({message: error.message})
-    }
-})
-
-//api to delete staff
-app.delete('/staff/:id', async(req,res) => {
-    try{
-        const {id} = req.params;
-        const staff = await staffInformation.findByIdAndDelete(id)
-        if(!staff){
-            return res.status(404).json({message: `Staff ID not present to delete`})
-        }
-        res.status(200).json(staff)
-    }catch(error){
-        res.status(500).json({message: error.message})
-    }
-})
-//--------------------------------------------------------------------------------------------------------------------
+const staffRoute = require("./routes/staff");
+app.use('/staff', staffRoute);
 
 //connecting to Database and 
 mongoose.connect(db_connection)
