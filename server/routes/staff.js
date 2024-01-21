@@ -9,7 +9,7 @@ router.use(express.json())
 //api to get staff login
 router.post('/login', async(req,res) => {
     const staffLogin = await staffInformation.find({emailId:req.body.emailId, password:req.body.password})
-    if(staffLogin.length === 0) res.status(404).json(false)
+    if(staffLogin.length === 0) res.status(200).json(false)
     else res.status(200).json(true)
 })
 
@@ -39,10 +39,10 @@ router.post('/add', async (req,res)=>{
 })
 
 // api to get particular Staff
-router.get('/:id', async(req, res) => {
+router.get('/:email', async(req, res) => {
     try {
-        const {id} = req.params;
-        const staff = await staffInformation.findById(id);
+        const {email} = req.params;
+        const staff = await staffInformation.find({emailId: email});
         if(staff === null){
             return res.status(404).json( {message: `cannot find Staff`} )
         }

@@ -20,6 +20,8 @@ import StaffHome from "./StaffHome";
 import StaffClassAdjustmentStatus from "./StaffClassAdjustmentStatus";
 import StaffLeaveDetails from "./StaffLeaveDetails";
 import LogoutModal from "./LogoutModal";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 const Staff = () => {
   const navigate = useNavigate();
@@ -27,6 +29,8 @@ const Staff = () => {
   const [open, setOpen] = React.useState(false);
   const closeModal = () => setOpen(false);
   const openModal = () => setOpen(true);
+  const location = useLocation();
+  const [staffData, setStaffData] = useState([]);
 
   const [leaveForm, setLeaveForm] = useState({
     leaveType: "",
@@ -49,6 +53,10 @@ const Staff = () => {
   };
 
   useEffect(() => {
+    const url = "http://localhost:4000/staff/" + location.state.emailId;
+    axios.get(url).then((response) => {
+      setStaffData(response.data);
+    });
     if (activeState === "Logout") {
       logoutUser();
     }
@@ -81,7 +89,7 @@ const Staff = () => {
     navigate("/");
   };
 
-  let mainComponentContent = <StaffHome />;
+  let mainComponentContent = <StaffHome staffData={staffData[0]} />;
 
   if (activeState === "Apply Leave")
     mainComponentContent = (

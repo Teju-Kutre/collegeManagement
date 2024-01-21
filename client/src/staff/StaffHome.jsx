@@ -3,7 +3,7 @@ import { Grid, Typography } from "@mui/material";
 import profileImage from "../assets/profileImage.svg";
 import CustomTable from "./CustomTable";
 
-const StaffHome = () => {
+const StaffHome = ({ staffData }) => {
   const headers = [
     "LID",
     "Apply Date",
@@ -40,11 +40,10 @@ const StaffHome = () => {
   };
   const leaveDetailStyle = {
     textAlign: "center",
-    margin: "5px",
   };
   const labelStyle = {
     color: "#808080",
-    marginTop: "10px",
+    marginTop: "5px",
   };
   const valueStyle = {
     fontWeight: "bold",
@@ -56,16 +55,22 @@ const StaffHome = () => {
       <Grid item xs={2.5} sx={profileStyle}>
         <Typography sx={headStyle}>Employee Details</Typography>
         <img src={profileImage} alt="profile" className="profileImage" />
-        <Typography sx={labelStyle}>Staff Id</Typography>
-        <Typography sx={valueStyle}>CS09</Typography>
+        <Typography sx={labelStyle}>Staff SNo</Typography>
+        <Typography sx={valueStyle}>{staffData.SNo}</Typography>
         <Typography sx={labelStyle}>Staff Name</Typography>
-        <Typography sx={valueStyle}>Savita Bakare</Typography>
-        <Typography sx={labelStyle}>Designation</Typography>
-        <Typography sx={valueStyle}>Assistent Professor</Typography>
+        <Typography sx={valueStyle}>{staffData.name}</Typography>
         <Typography sx={labelStyle}>Department</Typography>
-        <Typography sx={valueStyle}>CS</Typography>
+        <Typography sx={valueStyle}>{staffData.department}</Typography>
+        <Typography sx={labelStyle}>Designation</Typography>
+        <Typography sx={valueStyle}>{staffData.designation}</Typography>
+        <Typography sx={labelStyle}>Qualification</Typography>
+        <Typography sx={valueStyle}>{staffData.qualification}</Typography>
+        <Typography sx={labelStyle}>Contact Number</Typography>
+        <Typography sx={valueStyle}>{staffData.contact}</Typography>
         <Typography sx={labelStyle}>Email Id</Typography>
-        <Typography sx={valueStyle}>savitaBakare@gmail</Typography>
+        <Typography sx={valueStyle}>{staffData.emailId}</Typography>
+        <Typography sx={labelStyle}>Address</Typography>
+        <Typography sx={valueStyle}>{staffData.permanentAddress}</Typography>
       </Grid>
       <Grid item xs={9.2} sx={leaveDetailStyle}>
         <Typography sx={headStyle}>Leave Details</Typography>

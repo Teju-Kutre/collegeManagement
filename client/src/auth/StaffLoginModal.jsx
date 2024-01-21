@@ -12,14 +12,28 @@ import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { TextField } from "@mui/material";
+import axios from "axios";
 
 const StaffLoginModal = ({ open, handleClose }) => {
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginStatus, setLoginStatus] = useState(null);
 
   const handleLogin = () => {
-    navigate("/staff");
+    const url = "http://localhost:4000/staff/login";
+    axios
+      .post(url, {
+        emailId: email,
+        password: password,
+      })
+      .then((response) => {
+        if (response.data === true) {
+          navigate("/staff", { state: { emailId: email } });
+        } else setLoginStatus(false);
+      });
   };
 
   const style = {
@@ -53,7 +67,12 @@ const StaffLoginModal = ({ open, handleClose }) => {
       <Box sx={style}>
         <Typography sx={textStyle}>Staff Login</Typography>
         <br />
-        <TextField id="outlined-basic" label="Staff Code" variant="outlined" />
+        <TextField
+          id="outlined-basic"
+          label="Staff Email"
+          variant="outlined"
+          onChange={(event) => setEmail(event.target.value)}
+        />
 
         <br />
 
@@ -76,6 +95,7 @@ const StaffLoginModal = ({ open, handleClose }) => {
               </InputAdornment>
             }
             label="Password"
+            onChange={(event) => setPassword(event.target.value)}
           />
         </FormControl>
         <br />
@@ -84,6 +104,11 @@ const StaffLoginModal = ({ open, handleClose }) => {
           Login
         </Button>
         <br />
+        {loginStatus === false && (
+          <Typography variant="h6" color={"red"} textAlign={"center"}>
+            Incorrect Email / Password
+          </Typography>
+        )}
       </Box>
     </Modal>
   );
